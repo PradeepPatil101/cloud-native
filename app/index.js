@@ -1,17 +1,21 @@
 import { createServer } from 'node:http';
 
-const hostname = '127.0.0.1';
+const hostname = '0.0.0.0';
 const port = 8080;
 
 // Handler for the /hello route
 function handleHello(req, res) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-}
+    // Log the incoming request method, URL, and a timestamp
+    console.log(`[${new Date().toISOString()}] Received ${req.method} request for ${req.url}`);
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
+  }
+  
 
 // Handler for the /health route
 function handleHealth(req, res) {
+  console.log(`[${new Date().toISOString()}] Received ${req.method} request for ${req.url}`);
   res.statusCode = 200;
   res.end(); // Only 200 status, no body
 }
